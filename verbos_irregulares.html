@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verbos irregulares</title>
+<style>
+:root{
+  --bg:#f6f5f2; --card:#fff; --ink:#1f2328; --muted:#6b7078; --line:#dcd9d2;
+  --g1:#e0a800; --g1c:#fff6c7; --g2:#f28c28; --g2c:#ffe3c7; --g3:#43a047; --g3c:#dff2dc;
+  --g4:#8e44ad; --g4c:#eeddf5; --g5:#d32f2f; --g5c:#fadada;
+  --ok:#2e7d32; --okc:#e3f4e4; --bad:#c62828; --badc:#fde4e4; --accent:#2b4c7e;
+  --ex:#2e7d32; --exd:#1f5e25; --exc:#e6f4e7;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:#22324a;color:#fff;padding:10px 16px 0}
+header h1{margin:0;font-size:1.2rem;letter-spacing:.03em}
+nav{max-width:1000px;margin:0 auto;display:flex;gap:2px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav{margin-top:8px}
+nav button{border:0;background:transparent;color:#c9d3e3;font:inherit;font-size:.88rem;font-weight:600;padding:7px 10px;white-space:nowrap;flex:none;border-radius:8px 8px 0 0;cursor:pointer;border-top:3px solid transparent}
+nav button.gtab{border-top-color:var(--c)}
+nav button.on{background:var(--bg);color:var(--ink)}
+main{max-width:1000px;margin:0 auto;padding:20px 16px 60px}
+.sec{display:none}.sec.on{display:block}
+h2.gt{margin:4px 0 10px;padding:8px 14px;border-radius:8px;color:#fff;font-size:1.1rem}
+.wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--line);background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th{text-align:left;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:9px 10px}
+td{padding:8px 10px;border-top:1px solid rgba(0,0,0,.07);vertical-align:top}
+td.en{cursor:pointer;font-weight:500}
+td.en:hover,td.en.speaking{outline:2px solid var(--accent);outline-offset:-2px;border-radius:4px}
+td.inf{font-weight:700}
+td.mean{color:#3d4249}
+td.g{text-align:center;font-weight:700;width:40px}
+.tip{color:var(--muted);font-size:.92rem;margin:0 0 6px}
+.spk{border:0;background:none;cursor:pointer;font-size:1rem;padding:0 4px}
+/* práctica */
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0 14px}
+select,.btn{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff}
+.btn{cursor:pointer;font-weight:600}
+.btn.pri{background:#1e66c9;color:#fff;border-color:#1e66c9}
+.btn.pri:hover:not(:disabled){background:#1753a6}
+.corr{display:flex;justify-content:center;margin-top:14px}
+.corr .btn{padding:10px 32px;font-size:1.05rem}
+.btn:disabled{opacity:.5;cursor:default}
+.ex th{background:var(--ex)}
+.ex td{padding:6px 8px}
+.ex input,.ex select{width:100%;font:inherit;padding:6px 8px;border:1px solid #b9d8bb;border-radius:6px;background:#fff}
+.ex input:focus,.ex select:focus{outline:2px solid var(--ex);border-color:transparent}
+.ex td.given{font-weight:700;background:var(--exc);color:var(--exd)}
+.ex td.ok input,.ex td.ok select{background:var(--okc);border-color:var(--ok);color:var(--ok)}
+.ex td.bad input,.ex td.bad select{background:var(--badc);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.ex tbody tr:nth-child(even) td:not(.given){background:#f7fbf7}
+#cl td.word{font-weight:700;font-size:1.1rem;color:var(--exd);background:var(--exc);width:30%}
+.res{display:none;margin-top:18px;background:#fff;border:1px solid #b9d8bb;border-left:6px solid var(--ex);border-radius:10px;padding:16px 18px}
+.res .big{font-size:2.2rem;font-weight:800}
+.res .lab{font-size:1.1rem;font-weight:700;margin-left:8px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:1000px;margin:0 auto}
+#mute{flex:none;border:1px solid #4a5d7a;background:#2c3f5c;color:#fff;font:inherit;font-size:.88rem;font-weight:600;padding:5px 12px;border-radius:8px;cursor:pointer}
+#mute.off{background:#7a2e2e;border-color:#a04545}
+.sol{display:block;font-size:.85rem;color:var(--bad);font-weight:600;margin-top:2px}
+.num{color:var(--muted);width:32px}
+.og1{color:#a07800;font-weight:600}.og2{color:#c85e00;font-weight:600}.og3{color:#2e7d32;font-weight:600}.og4{color:#8e44ad;font-weight:600}.og5{color:#c62828;font-weight:600}
+.ex td.ok select.gsel,.ex td.bad select.gsel{border-left-width:1px}
+.pager{display:flex;align-items:center;justify-content:center;gap:14px;margin:12px 0 4px}
+.pager button{width:44px;height:40px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:1.2rem;cursor:pointer;color:var(--ink)}
+.pager button:disabled{opacity:.35;cursor:default}
+.pager span{font-weight:600;color:var(--muted);min-width:120px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <h1>VERBOS IRREGULARES</h1>
+    <button id="mute" aria-pressed="false">🔊 Sonido activado</button>
+  </div>
+  <nav>
+    <span id="gtabs" style="display:contents"></span>
+    <button data-s="alfa">Alfabético</button>
+    <button data-s="prac">Practicar</button>
+    <button data-s="clas">Clasificar</button>
+  </nav>
+</header>
+<main>
+  <div id="grupos"></div>
+  <section id="alfa" class="sec"></section>
+  <section id="prac" class="sec">
+    <p class="tip">Verbos al azar. En cada fila aparece una sola forma: completa las otras tres. Cada casilla bien contestada vale 1 punto.</p>
+    <div class="bar">
+      <label>Grupo:
+        <select id="fg" class="gsel">
+          <option value="0">Todos</option>
+          <option value="1" class="og1">🟡 1 · Tres formas iguales</option>
+          <option value="2" class="og2">🟠 2 · i → a → u</option>
+          <option value="3" class="og3">🟢 3 · Pasado = participio</option>
+          <option value="4" class="og4">🟣 4 · Infinitivo = participio</option>
+          <option value="5" class="og5">🔴 5 · Participio = pasado + n</option>
+        </select>
+      </label>
+      <label>Nº de verbos:
+        <select id="fn"><option>3</option><option selected>5</option><option>7</option><option>10</option></select>
+      </label>
+      <button class="btn" id="nuevo">Nuevos verbos</button>
+    </div>
+    <div class="wrap"><table id="pr" class="ex">
+      <thead><tr><th class="num">#</th><th>Infinitive</th><th>Past simple</th><th>Past participle</th><th>Meaning</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <div class="corr"><button class="btn pri" id="corregir">Corregir</button></div>
+    <div id="res" class="res"></div>
+  </section>
+  <section id="clas" class="sec">
+    <p class="tip">Formas verbales al azar (infinitive, past simple o past participle). Elige a qué grupo pertenece cada una. Cada acierto vale 1 punto.</p>
+    <div class="bar">
+      <label>Nº de formas:
+        <select id="cn"><option>5</option><option selected>10</option><option>15</option></select>
+      </label>
+      <button class="btn" id="cnuevo">Nuevas formas</button>
+    </div>
+    <div class="wrap"><table id="cl" class="ex">
+      <thead><tr><th class="num">#</th><th>Forma verbal</th><th>Grupo</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <div class="corr"><button class="btn pri" id="ccorregir">Corregir</button></div>
+    <div id="cres" class="res"></div>
+  </section>
+</main>
+<script>
+const DATA = [{"g": 1, "t": "1) Tres formas iguales: no cambian", "v": [["bet", "bet", "bet", "apostar"], ["cost", "cost", "cost", "costar"], ["cut", "cut", "cut", "cortar"], ["hit", "hit", "hit", "pegar / golpear"], ["hurt", "hurt", "hurt", "doler / hacerse daño"], ["let", "let", "let", "dejar / permitir"], ["put", "put", "put", "poner"], ["quit", "quit / quitted", "quit / quitted", "abandonar / dejar"], ["read", "read", "read", "leer"], ["set", "set", "set", "establecer / poner / colocar"], ["shut", "shut", "shut", "cerrar"]]}, {"g": 2, "t": "2) Alternancia vocálica: i → a → u", "v": [["begin", "began", "begun", "empezar"], ["drink", "drank", "drunk", "beber"], ["ring", "rang", "rung", "sonar / llamar (por teléfono)"], ["sing", "sang", "sung", "cantar"], ["sink", "sank", "sunk", "hundir(se)"], ["swim", "swam", "swum", "nadar"]]}, {"g": 3, "t": "3) Pasado simple igual que participio", "v": [["bring", "brought", "brought", "traer"], ["buy", "bought", "bought", "comprar"], ["catch", "caught", "caught", "coger / agarrar / atrapar"], ["fight", "fought", "fought", "luchar / pelear(se)"], ["teach", "taught", "taught", "enseñar"], ["think", "thought", "thought", "pensar"], ["bend", "bent", "bent", "doblar"], ["bleed", "bled", "bled", "sangrar"], ["build", "built", "built", "construir"], ["dig", "dug", "dug", "excavar"], ["dream", "dreamt / dreamed", "dreamt / dreamed", "soñar"], ["feed", "fed", "fed", "alimentar / dar de comer"], ["feel", "felt", "felt", "sentir"], ["find", "found", "found", "encontrar"], ["get", "got", "got", "conseguir / coger"], ["hang", "hung / hanged*", "hung / hanged*", "colgar (*hanged: ahorcar)"], ["lead", "led", "led", "guiar / dirigir"], ["lend", "lent", "lent", "dejar / prestar"], ["lay", "laid", "laid", "poner / colocar"], ["shoot", "shot", "shot", "disparar"], ["have", "had", "had", "tener"], ["hear", "heard", "heard", "oír / escuchar"], ["hold", "held", "held", "sostener / agarrar"], ["keep", "kept", "kept", "mantener / guardar / seguir"], ["learn", "learnt / learned", "learnt / learned", "aprender"], ["leave", "left", "left", "dejar / irse / abandonar"], ["light", "lit", "lit", "encender / iluminar"], ["lose", "lost", "lost", "perder / extraviar"], ["make", "made", "made", "hacer / fabricar"], ["mean", "meant", "meant", "significar"], ["meet", "met", "met", "encontrarse / quedar con / conocer por primera vez"], ["pay", "paid", "paid", "pagar"], ["say", "said", "said", "decir"], ["sell", "sold", "sold", "vender"], ["send", "sent", "sent", "enviar / mandar"], ["shine", "shone", "shone", "brillar"], ["sit", "sat", "sat", "sentarse"], ["sleep", "slept", "slept", "dormir"], ["smell", "smelt / smelled", "smelt / smelled", "oler"], ["spell", "spelt / spelled", "spelt / spelled", "deletrear"], ["spend", "spent", "spent", "gastar (dinero) / pasar (el tiempo)"], ["stand", "stood", "stood", "estar de pie / ponerse en pie"], ["stick", "stuck", "stuck", "pegar (con cola) / adherirse"], ["sting", "stung", "stung", "picar (insecto) / herir"], ["sweep", "swept", "swept", "barrer"], ["tell", "told", "told", "decir / contar"], ["understand", "understood", "understood", "entender"], ["win", "won", "won", "ganar"]]}, {"g": 4, "t": "4) Infinitivo igual que participio", "v": [["become", "became", "become", "convertirse en"], ["come", "came", "come", "venir"], ["overcome", "overcame", "overcome", "superar"], ["run", "ran", "run", "correr"]]}, {"g": 5, "t": "5) Pasado simple = participio + n", "v": [["break", "broke", "broken", "romper"], ["choose", "chose", "chosen", "elegir"], ["freeze", "froze", "frozen", "helar / congelar"], ["speak", "spoke", "spoken", "hablar"], ["steal", "stole", "stolen", "robar"], ["wake up", "woke up", "woken up", "despertar(se)"]]}];
+const ALL = DATA.flatMap(g => g.v.map(v => ({g:g.g, v})));
+
+/* ---------- voz ---------- */
+const synth = window.speechSynthesis;
+let voice = null;
+function pickVoice(){
+  if(!synth) return;
+  const vs = synth.getVoices();
+  voice = vs.find(v=>/en-GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null;
+}
+if(synth){ pickVoice(); synth.onvoiceschanged = pickVoice; }
+// "read" en pasado se pronuncia /red/
+const PRON = {"read@1":"red","read@2":"red","read / red":"red"};
+let muted=false;
+try{ muted = localStorage.getItem("vi_mute")==="1"; }catch(e){}
+const muteBtn=document.getElementById("mute");
+function paintMute(){ muteBtn.textContent = muted ? "🔇 Sonido desactivado" : "🔊 Sonido activado"; muteBtn.classList.toggle("off",muted); muteBtn.setAttribute("aria-pressed",muted); }
+muteBtn.onclick=()=>{ muted=!muted; if(muted&&synth) synth.cancel(); try{localStorage.setItem("vi_mute",muted?"1":"0");}catch(e){} paintMute(); };
+paintMute();
+function speak(text, col){
+  if(muted || !synth || !text) return;
+  let t = text.replace(/\*/g,"");
+  if(t==="read" && (col===1||col===2)) t="red";
+  t = t.replace(/\s*\/\s*/g, ", ");
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(t);
+  u.lang = "en-GB"; if(voice) u.voice = voice; u.rate = .85;
+  synth.speak(u);
+}
+/* Solo habla si el puntero se queda quieto sobre la celda (el alumno quiere oírla),
+   no cuando pasa por encima de camino a otro sitio. */
+const DWELL_MS = 700, MOVE_TOL = 6;
+let hoverTimer=null, lastXY=null;
+function bindSpeak(td, text, col){
+  td.classList.add("en");
+  const arm = e => { clearTimeout(hoverTimer); lastXY=[e.clientX,e.clientY];
+    hoverTimer=setTimeout(()=>{ speak(text,col); flash(td); }, DWELL_MS); };
+  td.addEventListener("mouseenter", arm);
+  td.addEventListener("mousemove", e=>{
+    // si el ratón sigue moviéndose, reinicia la espera
+    if(!lastXY || Math.hypot(e.clientX-lastXY[0], e.clientY-lastXY[1]) > MOVE_TOL) arm(e);
+  });
+  td.addEventListener("mouseleave", ()=>{ clearTimeout(hoverTimer); lastXY=null; });
+  td.addEventListener("click", ()=>{ speak(text,col); flash(td); });
+}
+function flash(td){ td.classList.add("speaking"); setTimeout(()=>td.classList.remove("speaking"),700); }
+
+/* ---------- paginación (10 filas por página) ---------- */
+function paginate(tb, wrap, per=10){
+  const rows=[...tb.rows], n=Math.ceil(rows.length/per); let pg=0;
+  const bar=document.createElement("div"); bar.className="pager";
+  bar.innerHTML=`<button aria-label="Página anterior">◀</button><span></span><button aria-label="Página siguiente">▶</button>`;
+  const [prev,lab,next]=bar.children;
+  function show(){
+    rows.forEach((r,i)=>r.style.display = Math.floor(i/per)===pg ? "" : "none");
+    lab.textContent=`Página ${pg+1} de ${n}`;
+    prev.disabled = pg===0; next.disabled = pg===n-1;
+  }
+  prev.onclick=()=>{ if(pg>0){pg--;show();} };
+  next.onclick=()=>{ if(pg<n-1){pg++;show();} };
+  wrap.after(bar); show();
+}
+
+/* ---------- tablas de estudio ---------- */
+function row(v, g, withG){
+  const tr = document.createElement("tr");
+  tr.style.background = `var(--g${g}c)`;
+  v.forEach((x,i)=>{
+    const td = document.createElement("td");
+    td.textContent = x;
+    if(i===0) td.classList.add("inf");
+    if(i<3) bindSpeak(td, x, i); else td.classList.add("mean");
+    tr.appendChild(td);
+  });
+  if(withG){ const td=document.createElement("td"); td.className="g"; td.textContent=g; td.style.color=`var(--g${g})`; tr.appendChild(td); }
+  return tr;
+}
+function table(head, color){
+  const w = document.createElement("div"); w.className="wrap";
+  const t = document.createElement("table");
+  t.innerHTML = `<thead><tr>${head.map(h=>`<th style="background:${color}">${h}</th>`).join("")}</tr></thead><tbody></tbody>`;
+  w.appendChild(t); return [w, t.tBodies[0]];
+}
+const H = ["Infinitive","Past simple","Past participle","Meaning"];
+const sg = document.getElementById("grupos");
+const SHORT = {1:"1 · Tres iguales",2:"2 · i → a → u",3:"3 · Pasado = part.",4:"4 · Inf. = part.",5:"5 · Part. = pasado + n"};
+DATA.forEach(g=>{
+  const b = document.createElement("button"); b.dataset.s="g"+g.g; b.className="gtab"+(g.g===1?" on":"");
+  b.style.setProperty("--c",`var(--g${g.g})`); b.textContent=SHORT[g.g];
+  document.getElementById("gtabs").appendChild(b);
+  const sec = document.createElement("section"); sec.id="g"+g.g; sec.className="sec"+(g.g===1?" on":"");
+  sg.appendChild(sec);
+  const h = document.createElement("h2"); h.className="gt"; h.textContent=g.t; h.style.background=`var(--g${g.g})`;
+  sec.appendChild(h);
+  const [w,tb] = table(H, `var(--g${g.g})`);
+  g.v.forEach(v=>tb.appendChild(row(v,g.g,false)));
+  sec.appendChild(w);
+  if(g.g===3) paginate(tb, w);
+});
+const sa = document.getElementById("alfa");
+{
+  const [w,tb] = table([...H,"G"], "#3a3f47");
+  [...ALL].sort((a,b)=>a.v[0].localeCompare(b.v[0])).forEach(x=>tb.appendChild(row(x.v,x.g,true)));
+  sa.appendChild(w);
+  paginate(tb, w);
+}
+
+/* ---------- pestañas ---------- */
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".sec").forEach(s=>s.classList.toggle("on",s.id===b.dataset.s));
+});
+
+/* ---------- color del grupo en los desplegables ---------- */
+function paintSel(sel){
+  const g=+sel.value;
+  sel.style.borderLeft = g ? `6px solid var(--g${g})` : "";
+  sel.style.color = g ? `var(--g${g})` : "";
+  sel.style.fontWeight = g ? "600" : "";
+}
+/* ---------- práctica ---------- */
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
+  .replace(/\*/g,"").replace(/\(.*?\)/g,"").replace(/[.,;:]/g,"").replace(/\s+/g," ").trim();
+function variants(ans, col){
+  // alternativas separadas por "/" ; en el significado también vale la frase entera
+  const parts = ans.replace(/\(.*?\)/g,"").split("/").map(norm).filter(Boolean);
+  if(col===3){
+    // también aceptar con "se" quitado/añadido: hundir(se) -> hundir, hundirse
+    ans.split("/").forEach(p=>{ const m=p.match(/(\w+)\((\w+)\)/); if(m) parts.push(norm(m[1]+m[2])); });
+    parts.push(norm(ans));
+  }
+  return parts;
+}
+function check(user, ans, col){
+  const u = norm(user); if(!u) return false;
+  const vs = variants(ans, col);
+  if(vs.includes(u)) return true;
+  // varias respuestas del alumno separadas por "/": todas deben ser válidas
+  const us = u.split("/").map(s=>s.trim()).filter(Boolean);
+  return us.length>1 && us.every(x=>vs.includes(x));
+}
+let current = [];
+function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function nuevo(){
+  const g = +document.getElementById("fg").value;
+  const pool = ALL.filter(x=>!g||x.g===g);
+  const picked = shuffle([...pool]).slice(0, Math.min(+document.getElementById("fn").value,pool.length));
+  // reparto equilibrado de qué columna se muestra
+  // si el significado se comparte con otro verbo (p. ej. "decir": say/tell), no se muestra el significado
+  const pieces = x => variants(x.v[3],3);
+  const amb = x => ALL.some(y=>y!==x && pieces(y).some(p=>pieces(x).includes(p)));
+  const shows = shuffle(picked.map((_,i)=>i%4));
+  current = picked.map((x,i)=>({...x, show: (shows[i]===3 && amb(x)) ? Math.floor(Math.random()*3) : shows[i]}));
+  const tb = document.querySelector("#pr tbody"); tb.innerHTML="";
+  current.forEach((x,i)=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td class="num">${i+1}</td>`;
+    for(let c=0;c<4;c++){
+      const td = document.createElement("td");
+      if(c===x.show){ td.className="given"; td.textContent = c===3 ? x.v[c].replace(/\s*\(\*.*?\)/,"") : x.v[c]; if(c<3) bindSpeak(td,x.v[c],c); }
+      else { const inp=document.createElement("input"); inp.autocomplete="off"; inp.spellcheck=false; inp.setAttribute("autocapitalize","off"); td.appendChild(inp); }
+      tr.appendChild(td);
+    }
+    tb.appendChild(tr);
+  });
+  const r=document.getElementById("res"); r.style.display="none"; r.innerHTML="";
+  document.getElementById("corregir").disabled=false;
+}
+function valoracion(n){
+  if(n<3)  return ["Suspenso","#c62828","Tienes que practicar más. Repasa los grupos y vuelve a intentarlo."];
+  if(n<5)  return ["Suspenso","#c62828","Casi lo tienes, pero tienes que practicar más."];
+  if(n<6)  return ["Aprobado","#e07b00","Has aprobado, pero puedes hacerlo mejor."];
+  if(n<7)  return ["Bien","#b38f00","Bien. Repasa los fallos y lo harás mejor."];
+  if(n<9)  return ["Notable","#2e7d32","¡Muy bien! Buena nota."];
+  if(n<10) return ["Sobresaliente","#1b5e20","¡Excelente!"];
+  return ["Sobresaliente","#1b5e20","¡Excelente! ¡Perfecto, sin ningún fallo!"];
+}
+function corregir(){
+  const rows = document.querySelectorAll("#pr tbody tr");
+  let ok=0, tot=0;
+  current.forEach((x,i)=>{
+    const tds = rows[i].querySelectorAll("td");
+    for(let c=0;c<4;c++){
+      if(c===x.show) continue;
+      tot++;
+      const td = tds[c+1], inp = td.querySelector("input");
+      td.querySelector(".sol")?.remove();
+      inp.readOnly = true;
+      if(check(inp.value, x.v[c], c)){ ok++; td.className="ok"; }
+      else {
+        td.className="bad";
+        const s=document.createElement("span"); s.className="sol"; s.textContent=x.v[c]; td.appendChild(s);
+      }
+      if(c<3) bindSpeak(td, x.v[c], c);
+    }
+  });
+  showResult("res", ok, tot);
+  document.getElementById("corregir").disabled=true;
+}
+function showResult(id, ok, tot){
+  const nota = Math.round(ok/tot*100)/10;
+  const [lab,col,msg] = valoracion(nota);
+  const r=document.getElementById(id);
+  r.innerHTML = `<div><span class="big" style="color:${col}">${nota.toLocaleString("es-ES")}</span><span class="lab" style="color:${col}">${lab}</span></div>
+    <div style="margin-top:6px"><b>${ok}</b> aciertos de <b>${tot}</b> (${ok} ${ok===1?"punto":"puntos"} sobre ${tot})${tot-ok? ` · ${tot-ok} ${tot-ok===1?"fallo marcado":"fallos marcados"} en rojo con la respuesta correcta debajo.`:"."}</div>
+    <div style="margin-top:10px;font-size:1.25rem;font-weight:700;color:${col}">${msg}</div>`;
+  r.style.display="block";
+  r.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+document.getElementById("nuevo").onclick=nuevo;
+document.getElementById("fg").onchange=()=>{ paintSel(document.getElementById("fg")); nuevo(); };
+document.getElementById("fn").onchange=nuevo;
+document.getElementById("corregir").onclick=corregir;
+nuevo();
+
+/* ---------- clasificar ---------- */
+const GDOT = {1:"🟡",2:"🟠",3:"🟢",4:"🟣",5:"🔴"};
+const GNAMES = {1:"Tres formas iguales",2:"Alternancia vocálica (i → a → u)",3:"Pasado igual que participio",4:"Infinitivo igual que participio",5:"Participio = pasado + n"};
+// todas las formas (infinitive, past, participle), separando alternativas; se excluyen las que pertenezcan a verbos de grupos distintos
+const FORMS = (()=>{
+  const m = new Map();
+  ALL.forEach(x=>x.v.slice(0,3).forEach((f,c)=>f.split("/").map(s=>s.replace(/\*/g,"").trim()).forEach(w=>{
+    if(!m.has(w)) m.set(w,{w, groups:new Set(), c}); m.get(w).groups.add(x.g);
+  })));
+  return [...m.values()].filter(f=>f.groups.size===1).map(f=>({w:f.w, g:[...f.groups][0], c:f.c}));
+})();
+let ccur=[];
+function cnuevo(){
+  // al menos una forma de cada grupo, el resto al azar sin repetir
+  const byG = g => FORMS.filter(f=>f.g===g);
+  const pick = [1,2,3,4,5].map(g=>shuffle(byG(g))[0]);
+  const rest = shuffle(FORMS.filter(f=>!pick.includes(f)));
+  const n = +document.getElementById("cn").value;
+  ccur = shuffle([...pick, ...rest.slice(0, n-5)]);
+  const tb=document.querySelector("#cl tbody"); tb.innerHTML="";
+  ccur.forEach((f,i)=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td class="num">${i+1}</td>`;
+    const tw=document.createElement("td"); tw.className="word"; tw.textContent=f.w; bindSpeak(tw,f.w,f.c);
+    const ts=document.createElement("td");
+    const sel=document.createElement("select");
+    sel.className="gsel";
+    sel.innerHTML=`<option value="">— Elige el grupo —</option>`+[1,2,3,4,5].map(g=>`<option value="${g}" class="og${g}">${GDOT[g]} ${GNAMES[g]}</option>`).join("");
+    sel.onchange=()=>paintSel(sel);
+    ts.appendChild(sel);
+    tr.append(tw,ts); tb.appendChild(tr);
+  });
+  const r=document.getElementById("cres"); r.style.display="none"; r.innerHTML="";
+  document.getElementById("ccorregir").disabled=false;
+}
+function ccorregir(){
+  const rows=document.querySelectorAll("#cl tbody tr"); let ok=0;
+  ccur.forEach((f,i)=>{
+    const td=rows[i].querySelectorAll("td")[2], sel=td.querySelector("select");
+    sel.disabled=true;
+    if(+sel.value===f.g){ ok++; td.className="ok"; }
+    else { td.className="bad"; const s=document.createElement("span"); s.className="sol"; s.textContent=GNAMES[f.g]; td.appendChild(s); }
+  });
+  showResult("cres", ok, ccur.length);
+  document.getElementById("ccorregir").disabled=true;
+}
+document.getElementById("cnuevo").onclick=cnuevo;
+document.getElementById("cn").onchange=cnuevo;
+document.getElementById("ccorregir").onclick=ccorregir;
+cnuevo();
+</script>
+</body>
+</html>

@@ -277,11 +277,9 @@ function nuevo(){
   const pool = ALL.filter(x=>!g||x.g===g);
   const picked = shuffle([...pool]).slice(0, Math.min(+document.getElementById("fn").value,pool.length));
   // reparto equilibrado de qué columna se muestra
-  // si el significado se comparte con otro verbo (p. ej. "decir": say/tell), no se muestra el significado
-  const pieces = x => variants(x.v[3],3);
-  const amb = x => ALL.some(y=>y!==x && pieces(y).some(p=>pieces(x).includes(p)));
+  // se reparte qué columna se da: infinitive, past simple, past participle o meaning
   const shows = shuffle(picked.map((_,i)=>i%4));
-  current = picked.map((x,i)=>({...x, show: (shows[i]===3 && amb(x)) ? Math.floor(Math.random()*3) : shows[i]}));
+  current = picked.map((x,i)=>({...x, show: shows[i]}));
   const tb = document.querySelector("#pr tbody"); tb.innerHTML="";
   current.forEach((x,i)=>{
     const tr = document.createElement("tr");
@@ -311,18 +309,27 @@ function corregir(){
   let ok=0, tot=0;
   current.forEach((x,i)=>{
     const tds = rows[i].querySelectorAll("td");
+    // Si se da el significado y lo comparten varios verbos (p. ej. "decir": say / tell),
+    // vale cualquiera de ellos: se corrige según el infinitivo que haya escrito el alumno.
+    let ref = x;
+    if(x.show===3){
+      const mine = variants(x.v[3],3);
+      const cands = ALL.filter(y=>variants(y.v[3],3).some(p=>mine.includes(p)));
+      const inf = tds[1].querySelector("input").value;
+      ref = cands.find(y=>check(inf, y.v[0], 0)) || x;
+    }
     for(let c=0;c<4;c++){
       if(c===x.show) continue;
       tot++;
       const td = tds[c+1], inp = td.querySelector("input");
       td.querySelector(".sol")?.remove();
       inp.readOnly = true;
-      if(check(inp.value, x.v[c], c)){ ok++; td.className="ok"; }
+      if(check(inp.value, ref.v[c], c)){ ok++; td.className="ok"; }
       else {
         td.className="bad";
-        const s=document.createElement("span"); s.className="sol"; s.textContent=x.v[c]; td.appendChild(s);
+        const s=document.createElement("span"); s.className="sol"; s.textContent=ref.v[c]; td.appendChild(s);
       }
-      if(c<3) bindSpeak(td, x.v[c], c);
+      if(c<3) bindSpeak(td, ref.v[c], c);
     }
   });
   showResult("res", ok, tot);

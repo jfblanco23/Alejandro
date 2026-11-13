@@ -9,6 +9,7 @@
   --bg:#f6f5f2; --card:#fff; --ink:#1f2328; --muted:#6b7078; --line:#dcd9d2;
   --g1:#e0a800; --g1c:#fff6c7; --g2:#f28c28; --g2c:#ffe3c7; --g3:#43a047; --g3c:#dff2dc;
   --g4:#8e44ad; --g4c:#eeddf5; --g5:#d32f2f; --g5c:#fadada;
+  --g6:#d6337f; --g6c:#fce0ee; --g7:#1e5fb4; --g7c:#dce8f8;
   --ok:#2e7d32; --okc:#e3f4e4; --bad:#c62828; --badc:#fde4e4; --accent:#2b4c7e;
   --ex:#2e7d32; --exd:#1f5e25; --exc:#e6f4e7;
 }
@@ -16,7 +17,7 @@
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 header{background:#22324a;color:#fff;padding:10px 16px 0}
 header h1{margin:0;font-size:1.2rem;letter-spacing:.03em}
-nav{max-width:1000px;margin:0 auto;display:flex;gap:2px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+nav{max-width:1000px;margin:0 auto;display:flex;gap:2px;flex-wrap:wrap;row-gap:4px}
 nav::-webkit-scrollbar{display:none}
 nav{margin-top:8px}
 nav button{border:0;background:transparent;color:#c9d3e3;font:inherit;font-size:.88rem;font-weight:600;padding:7px 10px;white-space:nowrap;flex:none;border-radius:8px 8px 0 0;cursor:pointer;border-top:3px solid transparent}
@@ -62,7 +63,7 @@ select,.btn{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid var
 #mute.off{background:#7a2e2e;border-color:#a04545}
 .sol{display:block;font-size:.85rem;color:var(--bad);font-weight:600;margin-top:2px}
 .num{color:var(--muted);width:32px}
-.og1{color:#a07800;font-weight:600}.og2{color:#c85e00;font-weight:600}.og3{color:#2e7d32;font-weight:600}.og4{color:#8e44ad;font-weight:600}.og5{color:#c62828;font-weight:600}
+.og1{color:#a07800;font-weight:600}.og2{color:#c85e00;font-weight:600}.og3{color:#2e7d32;font-weight:600}.og4{color:#8e44ad;font-weight:600}.og5{color:#c62828;font-weight:600}.og6{color:#d6337f;font-weight:600}.og7{color:#1e5fb4;font-weight:600}
 .ex td.ok select.gsel,.ex td.bad select.gsel{border-left-width:1px}
 .pager{display:flex;align-items:center;justify-content:center;gap:14px;margin:12px 0 4px}
 .pager button{width:44px;height:40px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:1.2rem;cursor:pointer;color:var(--ink)}
@@ -97,6 +98,8 @@ select,.btn{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid var
           <option value="3" class="og3">🟢 3 · Pasado = participio</option>
           <option value="4" class="og4">🟣 4 · Infinitivo = participio</option>
           <option value="5" class="og5">🔴 5 · Participio = pasado + n</option>
+          <option value="6" class="og6">🌸 6 · Participio = infinitivo + n</option>
+          <option value="7" class="og7">🔵 7 · Todas las formas distintas</option>
         </select>
       </label>
       <label>Nº de verbos:
@@ -128,8 +131,15 @@ select,.btn{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid var
   </section>
 </main>
 <script>
-const DATA = [{"g": 1, "t": "1) Tres formas iguales: no cambian", "v": [["bet", "bet", "bet", "apostar"], ["cost", "cost", "cost", "costar"], ["cut", "cut", "cut", "cortar"], ["hit", "hit", "hit", "pegar / golpear"], ["hurt", "hurt", "hurt", "doler / hacerse daño"], ["let", "let", "let", "dejar / permitir"], ["put", "put", "put", "poner"], ["quit", "quit / quitted", "quit / quitted", "abandonar / dejar"], ["read", "read", "read", "leer"], ["set", "set", "set", "establecer / poner / colocar"], ["shut", "shut", "shut", "cerrar"]]}, {"g": 2, "t": "2) Alternancia vocálica: i → a → u", "v": [["begin", "began", "begun", "empezar"], ["drink", "drank", "drunk", "beber"], ["ring", "rang", "rung", "sonar / llamar (por teléfono)"], ["sing", "sang", "sung", "cantar"], ["sink", "sank", "sunk", "hundir(se)"], ["swim", "swam", "swum", "nadar"]]}, {"g": 3, "t": "3) Pasado simple igual que participio", "v": [["bring", "brought", "brought", "traer"], ["buy", "bought", "bought", "comprar"], ["catch", "caught", "caught", "coger / agarrar / atrapar"], ["fight", "fought", "fought", "luchar / pelear(se)"], ["teach", "taught", "taught", "enseñar"], ["think", "thought", "thought", "pensar"], ["bend", "bent", "bent", "doblar"], ["bleed", "bled", "bled", "sangrar"], ["build", "built", "built", "construir"], ["dig", "dug", "dug", "excavar"], ["dream", "dreamt / dreamed", "dreamt / dreamed", "soñar"], ["feed", "fed", "fed", "alimentar / dar de comer"], ["feel", "felt", "felt", "sentir"], ["find", "found", "found", "encontrar"], ["get", "got", "got", "conseguir / coger"], ["hang", "hung / hanged*", "hung / hanged*", "colgar (*hanged: ahorcar)"], ["lead", "led", "led", "guiar / dirigir"], ["lend", "lent", "lent", "dejar / prestar"], ["lay", "laid", "laid", "poner / colocar"], ["shoot", "shot", "shot", "disparar"], ["have", "had", "had", "tener"], ["hear", "heard", "heard", "oír / escuchar"], ["hold", "held", "held", "sostener / agarrar"], ["keep", "kept", "kept", "mantener / guardar / seguir"], ["learn", "learnt / learned", "learnt / learned", "aprender"], ["leave", "left", "left", "dejar / irse / abandonar"], ["light", "lit", "lit", "encender / iluminar"], ["lose", "lost", "lost", "perder / extraviar"], ["make", "made", "made", "hacer / fabricar"], ["mean", "meant", "meant", "significar"], ["meet", "met", "met", "encontrarse / quedar con / conocer por primera vez"], ["pay", "paid", "paid", "pagar"], ["say", "said", "said", "decir"], ["sell", "sold", "sold", "vender"], ["send", "sent", "sent", "enviar / mandar"], ["shine", "shone", "shone", "brillar"], ["sit", "sat", "sat", "sentarse"], ["sleep", "slept", "slept", "dormir"], ["smell", "smelt / smelled", "smelt / smelled", "oler"], ["spell", "spelt / spelled", "spelt / spelled", "deletrear"], ["spend", "spent", "spent", "gastar (dinero) / pasar (el tiempo)"], ["stand", "stood", "stood", "estar de pie / ponerse en pie"], ["stick", "stuck", "stuck", "pegar (con cola) / adherirse"], ["sting", "stung", "stung", "picar (insecto) / herir"], ["sweep", "swept", "swept", "barrer"], ["tell", "told", "told", "decir / contar"], ["understand", "understood", "understood", "entender"], ["win", "won", "won", "ganar"]]}, {"g": 4, "t": "4) Infinitivo igual que participio", "v": [["become", "became", "become", "convertirse en"], ["come", "came", "come", "venir"], ["overcome", "overcame", "overcome", "superar"], ["run", "ran", "run", "correr"]]}, {"g": 5, "t": "5) Pasado simple = participio + n", "v": [["break", "broke", "broken", "romper"], ["choose", "chose", "chosen", "elegir"], ["freeze", "froze", "frozen", "helar / congelar"], ["speak", "spoke", "spoken", "hablar"], ["steal", "stole", "stolen", "robar"], ["wake up", "woke up", "woken up", "despertar(se)"]]}];
-const ALL = DATA.flatMap(g => g.v.map(v => ({g:g.g, v})));
+const DATA = [{"g": 1, "t": "1) Tres formas iguales: no cambian", "v": [["bet", "bet", "bet", "apostar"], ["cost", "cost", "cost", "costar"], ["cut", "cut", "cut", "cortar"], ["hit", "hit", "hit", "pegar / golpear"], ["hurt", "hurt", "hurt", "doler / hacerse daño"], ["let", "let", "let", "dejar / permitir"], ["put", "put", "put", "poner"], ["quit", "quit / quitted", "quit / quitted", "abandonar / dejar"], ["read", "read", "read", "leer"], ["set", "set", "set", "establecer / poner / colocar"], ["shut", "shut", "shut", "cerrar"]]}, {"g": 2, "t": "2) Alternancia vocálica: i → a → u", "v": [["begin", "began", "begun", "empezar"], ["drink", "drank", "drunk", "beber"], ["ring", "rang", "rung", "sonar / llamar (por teléfono)"], ["sing", "sang", "sung", "cantar"], ["sink", "sank", "sunk", "hundir(se)"], ["swim", "swam", "swum", "nadar"]]}, {"g": 3, "t": "3) Pasado simple igual que participio", "v": [["bring", "brought", "brought", "traer"], ["buy", "bought", "bought", "comprar"], ["catch", "caught", "caught", "coger / agarrar / atrapar"], ["fight", "fought", "fought", "luchar / pelear(se)"], ["teach", "taught", "taught", "enseñar"], ["think", "thought", "thought", "pensar"], ["bend", "bent", "bent", "doblar"], ["bleed", "bled", "bled", "sangrar"], ["build", "built", "built", "construir"], ["dig", "dug", "dug", "excavar"], ["dream", "dreamt / dreamed", "dreamt / dreamed", "soñar"], ["feed", "fed", "fed", "alimentar / dar de comer"], ["feel", "felt", "felt", "sentir"], ["find", "found", "found", "encontrar"], ["get", "got", "got", "conseguir / coger"], ["hang", "hung / hanged*", "hung / hanged*", "colgar (*hanged: ahorcar)"], ["lead", "led", "led", "guiar / dirigir"], ["lend", "lent", "lent", "dejar / prestar"], ["lay", "laid", "laid", "poner / colocar"], ["shoot", "shot", "shot", "disparar"], ["have", "had", "had", "tener"], ["hear", "heard", "heard", "oír / escuchar"], ["hold", "held", "held", "sostener / agarrar"], ["keep", "kept", "kept", "mantener / guardar / seguir"], ["learn", "learnt / learned", "learnt / learned", "aprender"], ["leave", "left", "left", "dejar / irse / abandonar"], ["light", "lit", "lit", "encender / iluminar"], ["lose", "lost", "lost", "perder / extraviar"], ["make", "made", "made", "hacer / fabricar"], ["mean", "meant", "meant", "significar"], ["meet", "met", "met", "encontrarse / quedar con / conocer por primera vez"], ["pay", "paid", "paid", "pagar"], ["say", "said", "said", "decir"], ["sell", "sold", "sold", "vender"], ["send", "sent", "sent", "enviar / mandar"], ["shine", "shone", "shone", "brillar"], ["sit", "sat", "sat", "sentarse"], ["sleep", "slept", "slept", "dormir"], ["smell", "smelt / smelled", "smelt / smelled", "oler"], ["spell", "spelt / spelled", "spelt / spelled", "deletrear"], ["spend", "spent", "spent", "gastar (dinero) / pasar (el tiempo)"], ["stand", "stood", "stood", "estar de pie / ponerse en pie"], ["stick", "stuck", "stuck", "pegar (con cola) / adherirse"], ["sting", "stung", "stung", "picar (insecto) / herir"], ["sweep", "swept", "swept", "barrer"], ["tell", "told", "told", "decir / contar"], ["understand", "understood", "understood", "entender"], ["win", "won", "won", "ganar"]]}, {"g": 4, "t": "4) Infinitivo igual que participio", "v": [["become", "became", "become", "convertirse en"], ["come", "came", "come", "venir"], ["overcome", "overcame", "overcome", "superar"], ["run", "ran", "run", "correr"]]}, {"g": 5, "t": "5) Pasado simple = participio + n", "v": [["break", "broke", "broken", "romper"], ["choose", "chose", "chosen", "elegir"], ["freeze", "froze", "frozen", "helar / congelar"], ["speak", "spoke", "spoken", "hablar"], ["steal", "stole", "stolen", "robar"], ["wake up", "woke up", "woken up", "despertar(se)"]]}, {"g": 6, "t": "6) Participio = infinitivo + n", "v": [["blow", "blew", "blown", "soplar / inflar"], ["draw", "drew", "drawn", "dibujar"], ["drive", "drove", "driven", "conducir"], ["grow", "grew", "grown", "crecer"], ["know", "knew", "known", "conocer / saber"], ["rise", "rose", "risen", "subir / elevarse"], ["see", "saw", "seen", "ver"], ["shake", "shook", "shaken", "agitar"], ["show", "showed", "shown", "mostrar / indicar"], ["take", "took", "taken", "llevar / coger / tomar"], ["throw", "threw", "thrown", "lanzar / tirar"]]}, {"g": 7, "t": "7) Todas las formas distintas", "v": [["be", "was / were", "been", "ser / estar"], ["bite", "bit", "bitten", "morder"], ["do", "did", "done", "hacer"], ["eat", "ate", "eaten", "comer"], ["fly", "flew", "flown", "volar"], ["forbid", "forbade", "forbidden", "prohibir"], ["forget", "forgot", "forgotten", "olvidar"], ["go", "went", "gone", "ir"], ["hide", "hid", "hidden", "esconder"], ["lie", "lay / lied*", "lain / lied*", "tumbarse / estar tumbado (*lied: mentir)"], ["ride", "rode", "ridden", "montar (en bici, a caballo)"], ["see", "saw", "seen", "ver"], ["tear", "tore", "torn", "rasgar / romper"], ["write", "wrote", "written", "escribir"]]}];
+const ALL = (()=>{
+  const m=new Map();
+  DATA.forEach(g=>g.v.forEach(v=>{
+    if(m.has(v[0])) m.get(v[0]).gs.push(g.g);
+    else m.set(v[0],{g:g.g, gs:[g.g], v});
+  }));
+  return [...m.values()];
+})();
 
 /* ---------- voz ---------- */
 const synth = window.speechSynthesis;
@@ -193,7 +203,7 @@ function paginate(tb, wrap, per=10){
 }
 
 /* ---------- tablas de estudio ---------- */
-function row(v, g, withG){
+function row(v, g, withG, gLabel){
   const tr = document.createElement("tr");
   tr.style.background = `var(--g${g}c)`;
   v.forEach((x,i)=>{
@@ -203,7 +213,7 @@ function row(v, g, withG){
     if(i<3) bindSpeak(td, x, i); else td.classList.add("mean");
     tr.appendChild(td);
   });
-  if(withG){ const td=document.createElement("td"); td.className="g"; td.textContent=g; td.style.color=`var(--g${g})`; tr.appendChild(td); }
+  if(withG){ const td=document.createElement("td"); td.className="g"; td.textContent=gLabel||g; td.style.color=`var(--g${g})`; tr.appendChild(td); }
   return tr;
 }
 function table(head, color){
@@ -214,7 +224,7 @@ function table(head, color){
 }
 const H = ["Infinitive","Past simple","Past participle","Meaning"];
 const sg = document.getElementById("grupos");
-const SHORT = {1:"1 · Tres iguales",2:"2 · i → a → u",3:"3 · Pasado = part.",4:"4 · Inf. = part.",5:"5 · Part. = pasado + n"};
+const SHORT = {1:"1 · Tres iguales",2:"2 · i → a → u",3:"3 · Pas. = part.",4:"4 · Inf. = part.",5:"5 · Part. = pas. + n",6:"6 · Part. = inf. + n",7:"7 · Todas distintas"};
 DATA.forEach(g=>{
   const b = document.createElement("button"); b.dataset.s="g"+g.g; b.className="gtab"+(g.g===1?" on":"");
   b.style.setProperty("--c",`var(--g${g.g})`); b.textContent=SHORT[g.g];
@@ -231,7 +241,7 @@ DATA.forEach(g=>{
 const sa = document.getElementById("alfa");
 {
   const [w,tb] = table([...H,"G"], "#3a3f47");
-  [...ALL].sort((a,b)=>a.v[0].localeCompare(b.v[0])).forEach(x=>tb.appendChild(row(x.v,x.g,true)));
+  [...ALL].sort((a,b)=>a.v[0].localeCompare(b.v[0])).forEach(x=>tb.appendChild(row(x.v,x.g,true,x.gs.join(", "))));
   sa.appendChild(w);
   paginate(tb, w);
 }
@@ -352,8 +362,8 @@ document.getElementById("corregir").onclick=corregir;
 nuevo();
 
 /* ---------- clasificar ---------- */
-const GDOT = {1:"🟡",2:"🟠",3:"🟢",4:"🟣",5:"🔴"};
-const GNAMES = {1:"Tres formas iguales",2:"Alternancia vocálica (i → a → u)",3:"Pasado igual que participio",4:"Infinitivo igual que participio",5:"Participio = pasado + n"};
+const GDOT = {1:"🟡",2:"🟠",3:"🟢",4:"🟣",5:"🔴",6:"🌸",7:"🔵"};
+const GNAMES = {1:"Tres formas iguales",2:"Alternancia vocálica (i → a → u)",3:"Pasado igual que participio",4:"Infinitivo igual que participio",5:"Participio = pasado + n",6:"Participio = infinitivo + n",7:"Todas las formas distintas"};
 // todas las formas (infinitive, past, participle), separando alternativas; se excluyen las que pertenezcan a verbos de grupos distintos
 const FORMS = (()=>{
   const m = new Map();
@@ -366,10 +376,11 @@ let ccur=[];
 function cnuevo(){
   // al menos una forma de cada grupo, el resto al azar sin repetir
   const byG = g => FORMS.filter(f=>f.g===g);
-  const pick = [1,2,3,4,5].map(g=>shuffle(byG(g))[0]);
-  const rest = shuffle(FORMS.filter(f=>!pick.includes(f)));
   const n = +document.getElementById("cn").value;
-  ccur = shuffle([...pick, ...rest.slice(0, n-5)]);
+  const gs = shuffle([1,2,3,4,5,6,7]).slice(0, Math.min(n,7));
+  const pick = gs.map(g=>shuffle(byG(g))[0]);
+  const rest = shuffle(FORMS.filter(f=>!pick.includes(f)));
+  ccur = shuffle([...pick, ...rest.slice(0, n-pick.length)]);
   const tb=document.querySelector("#cl tbody"); tb.innerHTML="";
   ccur.forEach((f,i)=>{
     const tr=document.createElement("tr");
@@ -378,7 +389,7 @@ function cnuevo(){
     const ts=document.createElement("td");
     const sel=document.createElement("select");
     sel.className="gsel";
-    sel.innerHTML=`<option value="">— Elige el grupo —</option>`+[1,2,3,4,5].map(g=>`<option value="${g}" class="og${g}">${GDOT[g]} ${GNAMES[g]}</option>`).join("");
+    sel.innerHTML=`<option value="">— Elige el grupo —</option>`+[1,2,3,4,5,6,7].map(g=>`<option value="${g}" class="og${g}">${GDOT[g]} ${GNAMES[g]}</option>`).join("");
     sel.onchange=()=>paintSel(sel);
     ts.appendChild(sel);
     tr.append(tw,ts); tb.appendChild(tr);

@@ -6,7 +6,7 @@
 \usepackage[table]{xcolor}
 \usepackage{longtable,array}
 \usepackage{lmodern}
-\renewcommand{\arraystretch}{1.2}\setlength{\LTpre}{2pt}\setlength{\LTpost}{2pt}
+\renewcommand{\arraystretch}{1.0}\setlength{\LTpre}{2pt}\setlength{\LTpost}{2pt}
 \setlength{\parindent}{0pt}
 \pagestyle{empty}
 % Color del texto de cada grupo
@@ -14,10 +14,12 @@
 \definecolor{naranjaO}{HTML}{E06A00}   \definecolor{naranjaC}{HTML}{FFE3C7}
 \definecolor{verdeO}{HTML}{2E8B3A}     \definecolor{verdeC}{HTML}{DFF2DC}
 \definecolor{moradoO}{HTML}{8E44AD}    \definecolor{moradoC}{HTML}{EEDDF5}
+\definecolor{rosaO}{HTML}{D6337F}      \definecolor{rosaC}{HTML}{FCE0EE}
+\definecolor{azulO}{HTML}{1E5FB4}      \definecolor{azulC}{HTML}{DCE8F8}
 \definecolor{rojoO}{HTML}{D32F2F}      \definecolor{rojoC}{HTML}{FADADA}
 \newcommand{\cab}[1]{\small\textbf{\color{#1O}INFINITIVE} & \small\textbf{\color{#1O}PAST SIMPLE} & \small\textbf{\color{#1O}PAST\,PARTICIPLE} & \small\textbf{\color{#1O}MEANING}\\[1pt]}
 \newcommand{\titulo}[2]{\vspace{2mm}{\large\bfseries\color{#1O}#2}\par}
-\begin{document}\normalsize
+\begin{document}\small
 \begin{center}{\Large\bfseries VERBOS IRREGULARES}\end{center}\vspace{-3mm}
 \titulo{amarillo}{1) Tres formas iguales: no cambian}
 \begin{longtable}{>{\bfseries}p{2.8cm}p{3.5cm}p{3.7cm}>{\raggedright\arraybackslash}p{6.6cm}}
@@ -114,17 +116,53 @@
 \textcolor{rojoO}{steal} & \textcolor{rojoO}{stole} & \textcolor{rojoO}{stolen} & \textcolor{rojoO}{robar}\\
 \textcolor{rojoO}{wake up} & \textcolor{rojoO}{woke up} & \textcolor{rojoO}{woken up} & \textcolor{rojoO}{despertar(se)}\\
 \end{longtable}
+\titulo{rosa}{6) Participio $=$ infinitivo $+\,n$}
+\begin{longtable}{>{\bfseries}p{2.8cm}p{3.5cm}p{3.7cm}>{\raggedright\arraybackslash}p{6.6cm}}
+\cab{rosa}\endhead
+\textcolor{rosaO}{blow} & \textcolor{rosaO}{blew} & \textcolor{rosaO}{blown} & \textcolor{rosaO}{soplar / inflar}\\
+\textcolor{rosaO}{draw} & \textcolor{rosaO}{drew} & \textcolor{rosaO}{drawn} & \textcolor{rosaO}{dibujar}\\
+\textcolor{rosaO}{drive} & \textcolor{rosaO}{drove} & \textcolor{rosaO}{driven} & \textcolor{rosaO}{conducir}\\
+\textcolor{rosaO}{grow} & \textcolor{rosaO}{grew} & \textcolor{rosaO}{grown} & \textcolor{rosaO}{crecer}\\
+\textcolor{rosaO}{know} & \textcolor{rosaO}{knew} & \textcolor{rosaO}{known} & \textcolor{rosaO}{conocer / saber}\\
+\textcolor{rosaO}{rise} & \textcolor{rosaO}{rose} & \textcolor{rosaO}{risen} & \textcolor{rosaO}{subir / elevarse}\\
+\textcolor{rosaO}{see} & \textcolor{rosaO}{saw} & \textcolor{rosaO}{seen} & \textcolor{rosaO}{ver}\\
+\textcolor{rosaO}{shake} & \textcolor{rosaO}{shook} & \textcolor{rosaO}{shaken} & \textcolor{rosaO}{agitar}\\
+\textcolor{rosaO}{show} & \textcolor{rosaO}{showed} & \textcolor{rosaO}{shown} & \textcolor{rosaO}{mostrar / indicar}\\
+\textcolor{rosaO}{take} & \textcolor{rosaO}{took} & \textcolor{rosaO}{taken} & \textcolor{rosaO}{llevar / coger / tomar}\\
+\textcolor{rosaO}{throw} & \textcolor{rosaO}{threw} & \textcolor{rosaO}{thrown} & \textcolor{rosaO}{lanzar / tirar}\\
+\end{longtable}
+\titulo{azul}{7) Todas las formas distintas}
+\begin{longtable}{>{\bfseries}p{2.8cm}p{3.5cm}p{3.7cm}>{\raggedright\arraybackslash}p{6.6cm}}
+\cab{azul}\endhead
+\textcolor{azulO}{be} & \textcolor{azulO}{was / were} & \textcolor{azulO}{been} & \textcolor{azulO}{ser / estar}\\
+\textcolor{azulO}{bite} & \textcolor{azulO}{bit} & \textcolor{azulO}{bitten} & \textcolor{azulO}{morder}\\
+\textcolor{azulO}{do} & \textcolor{azulO}{did} & \textcolor{azulO}{done} & \textcolor{azulO}{hacer}\\
+\textcolor{azulO}{eat} & \textcolor{azulO}{ate} & \textcolor{azulO}{eaten} & \textcolor{azulO}{comer}\\
+\textcolor{azulO}{fly} & \textcolor{azulO}{flew} & \textcolor{azulO}{flown} & \textcolor{azulO}{volar}\\
+\textcolor{azulO}{forbid} & \textcolor{azulO}{forbade} & \textcolor{azulO}{forbidden} & \textcolor{azulO}{prohibir}\\
+\textcolor{azulO}{forget} & \textcolor{azulO}{forgot} & \textcolor{azulO}{forgotten} & \textcolor{azulO}{olvidar}\\
+\textcolor{azulO}{go} & \textcolor{azulO}{went} & \textcolor{azulO}{gone} & \textcolor{azulO}{ir}\\
+\textcolor{azulO}{hide} & \textcolor{azulO}{hid} & \textcolor{azulO}{hidden} & \textcolor{azulO}{esconder}\\
+\textcolor{azulO}{lie} & \textcolor{azulO}{lay / lied*} & \textcolor{azulO}{lain / lied*} & \textcolor{azulO}{tumbarse / estar tumbado (*lied: mentir)}\\
+\textcolor{azulO}{ride} & \textcolor{azulO}{rode} & \textcolor{azulO}{ridden} & \textcolor{azulO}{montar (en bici, a caballo)}\\
+\textcolor{azulO}{see} & \textcolor{azulO}{saw} & \textcolor{azulO}{seen} & \textcolor{azulO}{ver}\\
+\textcolor{azulO}{tear} & \textcolor{azulO}{tore} & \textcolor{azulO}{torn} & \textcolor{azulO}{rasgar / romper}\\
+\textcolor{azulO}{write} & \textcolor{azulO}{wrote} & \textcolor{azulO}{written} & \textcolor{azulO}{escribir}\\
+\end{longtable}
 \newpage
 \begin{center}{\Large\bfseries VERBOS IRREGULARES — ORDEN ALFABÉTICO}\end{center}\vspace{-2mm}
 \vspace{3mm}
-\renewcommand{\arraystretch}{1.4}
+\renewcommand{\arraystretch}{1.2}
 \begin{longtable}{>{\bfseries}p{2.6cm}p{3.4cm}p{3.6cm}>{\raggedright\arraybackslash}p{6.0cm}c}
 \small\textbf{INFINITIVE} & \small\textbf{PAST SIMPLE} & \small\textbf{PAST\,PARTICIPLE} & \small\textbf{MEANING} & \small\textbf{G}\\[1pt]\endhead
+\textcolor{azulO}{be} & \textcolor{azulO}{was / were} & \textcolor{azulO}{been} & \textcolor{azulO}{ser / estar} & \textcolor{azulO}{7}\\
 \textcolor{moradoO}{become} & \textcolor{moradoO}{became} & \textcolor{moradoO}{become} & \textcolor{moradoO}{convertirse en} & \textcolor{moradoO}{4}\\
 \textcolor{naranjaO}{begin} & \textcolor{naranjaO}{began} & \textcolor{naranjaO}{begun} & \textcolor{naranjaO}{empezar} & \textcolor{naranjaO}{2}\\
 \textcolor{verdeO}{bend} & \textcolor{verdeO}{bent} & \textcolor{verdeO}{bent} & \textcolor{verdeO}{doblar} & \textcolor{verdeO}{3}\\
 \textcolor{amarilloO}{bet} & \textcolor{amarilloO}{bet} & \textcolor{amarilloO}{bet} & \textcolor{amarilloO}{apostar} & \textcolor{amarilloO}{1}\\
+\textcolor{azulO}{bite} & \textcolor{azulO}{bit} & \textcolor{azulO}{bitten} & \textcolor{azulO}{morder} & \textcolor{azulO}{7}\\
 \textcolor{verdeO}{bleed} & \textcolor{verdeO}{bled} & \textcolor{verdeO}{bled} & \textcolor{verdeO}{sangrar} & \textcolor{verdeO}{3}\\
+\textcolor{rosaO}{blow} & \textcolor{rosaO}{blew} & \textcolor{rosaO}{blown} & \textcolor{rosaO}{soplar / inflar} & \textcolor{rosaO}{6}\\
 \textcolor{rojoO}{break} & \textcolor{rojoO}{broke} & \textcolor{rojoO}{broken} & \textcolor{rojoO}{romper} & \textcolor{rojoO}{5}\\
 \textcolor{verdeO}{bring} & \textcolor{verdeO}{brought} & \textcolor{verdeO}{brought} & \textcolor{verdeO}{traer} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{build} & \textcolor{verdeO}{built} & \textcolor{verdeO}{built} & \textcolor{verdeO}{construir} & \textcolor{verdeO}{3}\\
@@ -135,27 +173,39 @@
 \textcolor{amarilloO}{cost} & \textcolor{amarilloO}{cost} & \textcolor{amarilloO}{cost} & \textcolor{amarilloO}{costar} & \textcolor{amarilloO}{1}\\
 \textcolor{amarilloO}{cut} & \textcolor{amarilloO}{cut} & \textcolor{amarilloO}{cut} & \textcolor{amarilloO}{cortar} & \textcolor{amarilloO}{1}\\
 \textcolor{verdeO}{dig} & \textcolor{verdeO}{dug} & \textcolor{verdeO}{dug} & \textcolor{verdeO}{excavar} & \textcolor{verdeO}{3}\\
+\textcolor{azulO}{do} & \textcolor{azulO}{did} & \textcolor{azulO}{done} & \textcolor{azulO}{hacer} & \textcolor{azulO}{7}\\
+\textcolor{rosaO}{draw} & \textcolor{rosaO}{drew} & \textcolor{rosaO}{drawn} & \textcolor{rosaO}{dibujar} & \textcolor{rosaO}{6}\\
 \textcolor{verdeO}{dream} & \textcolor{verdeO}{dreamt / dreamed} & \textcolor{verdeO}{dreamt / dreamed} & \textcolor{verdeO}{soñar} & \textcolor{verdeO}{3}\\
 \textcolor{naranjaO}{drink} & \textcolor{naranjaO}{drank} & \textcolor{naranjaO}{drunk} & \textcolor{naranjaO}{beber} & \textcolor{naranjaO}{2}\\
+\textcolor{rosaO}{drive} & \textcolor{rosaO}{drove} & \textcolor{rosaO}{driven} & \textcolor{rosaO}{conducir} & \textcolor{rosaO}{6}\\
+\textcolor{azulO}{eat} & \textcolor{azulO}{ate} & \textcolor{azulO}{eaten} & \textcolor{azulO}{comer} & \textcolor{azulO}{7}\\
 \textcolor{verdeO}{feed} & \textcolor{verdeO}{fed} & \textcolor{verdeO}{fed} & \textcolor{verdeO}{alimentar / dar de comer} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{feel} & \textcolor{verdeO}{felt} & \textcolor{verdeO}{felt} & \textcolor{verdeO}{sentir} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{fight} & \textcolor{verdeO}{fought} & \textcolor{verdeO}{fought} & \textcolor{verdeO}{luchar / pelear(se)} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{find} & \textcolor{verdeO}{found} & \textcolor{verdeO}{found} & \textcolor{verdeO}{encontrar} & \textcolor{verdeO}{3}\\
+\textcolor{azulO}{fly} & \textcolor{azulO}{flew} & \textcolor{azulO}{flown} & \textcolor{azulO}{volar} & \textcolor{azulO}{7}\\
+\textcolor{azulO}{forbid} & \textcolor{azulO}{forbade} & \textcolor{azulO}{forbidden} & \textcolor{azulO}{prohibir} & \textcolor{azulO}{7}\\
+\textcolor{azulO}{forget} & \textcolor{azulO}{forgot} & \textcolor{azulO}{forgotten} & \textcolor{azulO}{olvidar} & \textcolor{azulO}{7}\\
 \textcolor{rojoO}{freeze} & \textcolor{rojoO}{froze} & \textcolor{rojoO}{frozen} & \textcolor{rojoO}{helar / congelar} & \textcolor{rojoO}{5}\\
 \textcolor{verdeO}{get} & \textcolor{verdeO}{got} & \textcolor{verdeO}{got} & \textcolor{verdeO}{conseguir / coger} & \textcolor{verdeO}{3}\\
+\textcolor{azulO}{go} & \textcolor{azulO}{went} & \textcolor{azulO}{gone} & \textcolor{azulO}{ir} & \textcolor{azulO}{7}\\
+\textcolor{rosaO}{grow} & \textcolor{rosaO}{grew} & \textcolor{rosaO}{grown} & \textcolor{rosaO}{crecer} & \textcolor{rosaO}{6}\\
 \textcolor{verdeO}{hang} & \textcolor{verdeO}{hung / hanged*} & \textcolor{verdeO}{hung / hanged*} & \textcolor{verdeO}{colgar (*hanged: ahorcar)} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{have} & \textcolor{verdeO}{had} & \textcolor{verdeO}{had} & \textcolor{verdeO}{tener} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{hear} & \textcolor{verdeO}{heard} & \textcolor{verdeO}{heard} & \textcolor{verdeO}{oír / escuchar} & \textcolor{verdeO}{3}\\
+\textcolor{azulO}{hide} & \textcolor{azulO}{hid} & \textcolor{azulO}{hidden} & \textcolor{azulO}{esconder} & \textcolor{azulO}{7}\\
 \textcolor{amarilloO}{hit} & \textcolor{amarilloO}{hit} & \textcolor{amarilloO}{hit} & \textcolor{amarilloO}{pegar / golpear} & \textcolor{amarilloO}{1}\\
 \textcolor{verdeO}{hold} & \textcolor{verdeO}{held} & \textcolor{verdeO}{held} & \textcolor{verdeO}{sostener / agarrar} & \textcolor{verdeO}{3}\\
 \textcolor{amarilloO}{hurt} & \textcolor{amarilloO}{hurt} & \textcolor{amarilloO}{hurt} & \textcolor{amarilloO}{doler / hacerse daño} & \textcolor{amarilloO}{1}\\
 \textcolor{verdeO}{keep} & \textcolor{verdeO}{kept} & \textcolor{verdeO}{kept} & \textcolor{verdeO}{mantener / guardar / seguir} & \textcolor{verdeO}{3}\\
+\textcolor{rosaO}{know} & \textcolor{rosaO}{knew} & \textcolor{rosaO}{known} & \textcolor{rosaO}{conocer / saber} & \textcolor{rosaO}{6}\\
 \textcolor{verdeO}{lay} & \textcolor{verdeO}{laid} & \textcolor{verdeO}{laid} & \textcolor{verdeO}{poner / colocar} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{lead} & \textcolor{verdeO}{led} & \textcolor{verdeO}{led} & \textcolor{verdeO}{guiar / dirigir} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{learn} & \textcolor{verdeO}{learnt / learned} & \textcolor{verdeO}{learnt / learned} & \textcolor{verdeO}{aprender} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{leave} & \textcolor{verdeO}{left} & \textcolor{verdeO}{left} & \textcolor{verdeO}{dejar / irse / abandonar} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{lend} & \textcolor{verdeO}{lent} & \textcolor{verdeO}{lent} & \textcolor{verdeO}{dejar / prestar} & \textcolor{verdeO}{3}\\
 \textcolor{amarilloO}{let} & \textcolor{amarilloO}{let} & \textcolor{amarilloO}{let} & \textcolor{amarilloO}{dejar / permitir} & \textcolor{amarilloO}{1}\\
+\textcolor{azulO}{lie} & \textcolor{azulO}{lay / lied*} & \textcolor{azulO}{lain / lied*} & \textcolor{azulO}{tumbarse / estar tumbado (*lied: mentir)} & \textcolor{azulO}{7}\\
 \textcolor{verdeO}{light} & \textcolor{verdeO}{lit} & \textcolor{verdeO}{lit} & \textcolor{verdeO}{encender / iluminar} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{lose} & \textcolor{verdeO}{lost} & \textcolor{verdeO}{lost} & \textcolor{verdeO}{perder / extraviar} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{make} & \textcolor{verdeO}{made} & \textcolor{verdeO}{made} & \textcolor{verdeO}{hacer / fabricar} & \textcolor{verdeO}{3}\\
@@ -166,14 +216,19 @@
 \textcolor{amarilloO}{put} & \textcolor{amarilloO}{put} & \textcolor{amarilloO}{put} & \textcolor{amarilloO}{poner} & \textcolor{amarilloO}{1}\\
 \textcolor{amarilloO}{quit} & \textcolor{amarilloO}{quit / quitted} & \textcolor{amarilloO}{quit / quitted} & \textcolor{amarilloO}{abandonar / dejar} & \textcolor{amarilloO}{1}\\
 \textcolor{amarilloO}{read} & \textcolor{amarilloO}{read} & \textcolor{amarilloO}{read} & \textcolor{amarilloO}{leer} & \textcolor{amarilloO}{1}\\
+\textcolor{azulO}{ride} & \textcolor{azulO}{rode} & \textcolor{azulO}{ridden} & \textcolor{azulO}{montar (en bici, a caballo)} & \textcolor{azulO}{7}\\
 \textcolor{naranjaO}{ring} & \textcolor{naranjaO}{rang} & \textcolor{naranjaO}{rung} & \textcolor{naranjaO}{sonar / llamar (por teléfono)} & \textcolor{naranjaO}{2}\\
+\textcolor{rosaO}{rise} & \textcolor{rosaO}{rose} & \textcolor{rosaO}{risen} & \textcolor{rosaO}{subir / elevarse} & \textcolor{rosaO}{6}\\
 \textcolor{moradoO}{run} & \textcolor{moradoO}{ran} & \textcolor{moradoO}{run} & \textcolor{moradoO}{correr} & \textcolor{moradoO}{4}\\
 \textcolor{verdeO}{say} & \textcolor{verdeO}{said} & \textcolor{verdeO}{said} & \textcolor{verdeO}{decir} & \textcolor{verdeO}{3}\\
+\textcolor{rosaO}{see} & \textcolor{rosaO}{saw} & \textcolor{rosaO}{seen} & \textcolor{rosaO}{ver} & \textcolor{rosaO}{6, 7}\\
 \textcolor{verdeO}{sell} & \textcolor{verdeO}{sold} & \textcolor{verdeO}{sold} & \textcolor{verdeO}{vender} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{send} & \textcolor{verdeO}{sent} & \textcolor{verdeO}{sent} & \textcolor{verdeO}{enviar / mandar} & \textcolor{verdeO}{3}\\
 \textcolor{amarilloO}{set} & \textcolor{amarilloO}{set} & \textcolor{amarilloO}{set} & \textcolor{amarilloO}{establecer / poner / colocar} & \textcolor{amarilloO}{1}\\
+\textcolor{rosaO}{shake} & \textcolor{rosaO}{shook} & \textcolor{rosaO}{shaken} & \textcolor{rosaO}{agitar} & \textcolor{rosaO}{6}\\
 \textcolor{verdeO}{shine} & \textcolor{verdeO}{shone} & \textcolor{verdeO}{shone} & \textcolor{verdeO}{brillar} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{shoot} & \textcolor{verdeO}{shot} & \textcolor{verdeO}{shot} & \textcolor{verdeO}{disparar} & \textcolor{verdeO}{3}\\
+\textcolor{rosaO}{show} & \textcolor{rosaO}{showed} & \textcolor{rosaO}{shown} & \textcolor{rosaO}{mostrar / indicar} & \textcolor{rosaO}{6}\\
 \textcolor{amarilloO}{shut} & \textcolor{amarilloO}{shut} & \textcolor{amarilloO}{shut} & \textcolor{amarilloO}{cerrar} & \textcolor{amarilloO}{1}\\
 \textcolor{naranjaO}{sing} & \textcolor{naranjaO}{sang} & \textcolor{naranjaO}{sung} & \textcolor{naranjaO}{cantar} & \textcolor{naranjaO}{2}\\
 \textcolor{naranjaO}{sink} & \textcolor{naranjaO}{sank} & \textcolor{naranjaO}{sunk} & \textcolor{naranjaO}{hundir(se)} & \textcolor{naranjaO}{2}\\
@@ -189,11 +244,15 @@
 \textcolor{verdeO}{sting} & \textcolor{verdeO}{stung} & \textcolor{verdeO}{stung} & \textcolor{verdeO}{picar (insecto) / herir} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{sweep} & \textcolor{verdeO}{swept} & \textcolor{verdeO}{swept} & \textcolor{verdeO}{barrer} & \textcolor{verdeO}{3}\\
 \textcolor{naranjaO}{swim} & \textcolor{naranjaO}{swam} & \textcolor{naranjaO}{swum} & \textcolor{naranjaO}{nadar} & \textcolor{naranjaO}{2}\\
+\textcolor{rosaO}{take} & \textcolor{rosaO}{took} & \textcolor{rosaO}{taken} & \textcolor{rosaO}{llevar / coger / tomar} & \textcolor{rosaO}{6}\\
 \textcolor{verdeO}{teach} & \textcolor{verdeO}{taught} & \textcolor{verdeO}{taught} & \textcolor{verdeO}{enseñar} & \textcolor{verdeO}{3}\\
+\textcolor{azulO}{tear} & \textcolor{azulO}{tore} & \textcolor{azulO}{torn} & \textcolor{azulO}{rasgar / romper} & \textcolor{azulO}{7}\\
 \textcolor{verdeO}{tell} & \textcolor{verdeO}{told} & \textcolor{verdeO}{told} & \textcolor{verdeO}{decir / contar} & \textcolor{verdeO}{3}\\
 \textcolor{verdeO}{think} & \textcolor{verdeO}{thought} & \textcolor{verdeO}{thought} & \textcolor{verdeO}{pensar} & \textcolor{verdeO}{3}\\
+\textcolor{rosaO}{throw} & \textcolor{rosaO}{threw} & \textcolor{rosaO}{thrown} & \textcolor{rosaO}{lanzar / tirar} & \textcolor{rosaO}{6}\\
 \textcolor{verdeO}{understand} & \textcolor{verdeO}{understood} & \textcolor{verdeO}{understood} & \textcolor{verdeO}{entender} & \textcolor{verdeO}{3}\\
 \textcolor{rojoO}{wake up} & \textcolor{rojoO}{woke up} & \textcolor{rojoO}{woken up} & \textcolor{rojoO}{despertar(se)} & \textcolor{rojoO}{5}\\
 \textcolor{verdeO}{win} & \textcolor{verdeO}{won} & \textcolor{verdeO}{won} & \textcolor{verdeO}{ganar} & \textcolor{verdeO}{3}\\
+\textcolor{azulO}{write} & \textcolor{azulO}{wrote} & \textcolor{azulO}{written} & \textcolor{azulO}{escribir} & \textcolor{azulO}{7}\\
 \end{longtable}
 \end{document}
